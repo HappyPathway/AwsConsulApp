@@ -1,5 +1,5 @@
 module "aws" {
-  source = "git@github.com:djaboxx/AwsSimpleDeploy.git"
+  source = "git@github.com:happypathway/AwsSimpleDeploy.git"
   service_name = "${var.service_name}"
   env = "${var.env}"
   count = "${var.count}"
