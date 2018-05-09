@@ -37,7 +37,7 @@ resource "aws_elb" "service" {
   connection_draining         = "${var.connection_draining}"
   connection_draining_timeout = "${var.connection_draining_timeout}"
   tags {
-    Name = "${var.company_name}-${var.org_name}-${var.service_name}"
+    Name = "${var.service_name}_"
   }
 }
 
