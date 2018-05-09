@@ -17,13 +17,17 @@
     
     - name: block for apt
       shell: while [ $(top -bn1| grep -q apt; echo $?) == '0' ]; do echo 'apt runing'; sleep 1; done
-      
+
     - name: download consul agent
       get_url: url=https://releases.hashicorp.com/consul/1.0.7/consul_1.0.7_linux_amd64.zip dest=/tmp/consul_1.0.7_linux_amd64.zip
 
     - name: install unzip
       apt: name=unzip state=installed
       when: ansible_os_family == "Debian"
+      register: result
+      until: result.rc == 0
+      retries: 10
+      delay: 10
 
     - name: unzip consul
       unarchive:
