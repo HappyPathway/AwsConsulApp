@@ -21,8 +21,12 @@
     - name: download consul agent
       get_url: url=https://releases.hashicorp.com/consul/1.0.7/consul_1.0.7_linux_amd64.zip dest=/tmp/consul_1.0.7_linux_amd64.zip
 
-    - name: install unzip
-      apt: name=unzip state=installed
+    - name: install apt packages
+      shell: "{{ item }}"
+      with_items:
+        - apt-get update
+        - apt-get install -y unzip
+        - apt-get install -y supervisor
       when: ansible_os_family == "Debian"
       register: result
       until: result.rc == 0
@@ -49,13 +53,6 @@
     - name: setup service file
       template: src=service.json.j2 dest={{ consul_config_dir }}/service.json
 
-    - name: install supervisor
-      apt: name=supervisor state=installed
-      register: result
-      until: result.rc == 0
-      retries: 10
-      delay: 10
-      
     - name: upload consul supervisord script
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
