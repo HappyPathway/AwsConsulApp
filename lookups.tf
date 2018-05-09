@@ -27,4 +27,11 @@ data "consul_keys" "aws_infra" {
     path    = "services/${var.env}/${var.service_name}/elb_subnet_id"
     default = ""
   }
+
+  key {
+    name    = "security_group"
+    path    = "services/${var.env}/${var.service_name}/security_group"
+    default = ""
+  }
+  
 }
