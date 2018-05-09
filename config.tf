@@ -36,6 +36,11 @@ resource "null_resource" "service_config" {
       "bash /tmp/playbooks/app_bootstrap.sh"
     ]
   }
+  provisioner "remote-exec" {
+      inline = [
+          "rm -rf /tmp/playbooks"
+      ]
+  }
 }
 
 
