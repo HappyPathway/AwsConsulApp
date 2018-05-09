@@ -1,4 +1,4 @@
-curl https://bootstrap.pypa.io/get-pip.py | python
+curl https://bootstrap.pypa.io/get-pip.py | sudo python
 sudo pip install -r /tmp/playbooks/requirements.txt
 sudo ansible-playbook /tmp/playbooks/app_install.yaml \
   -e version=$(cat /tmp/app.version) \
