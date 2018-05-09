@@ -4,6 +4,9 @@ variable "count" {
 
 variable "service_version" {}
 
+variable "instance_protocol" {
+    default = "http"
+}
 variable "env" {
     default = "staging"
 }
