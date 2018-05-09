@@ -19,3 +19,12 @@ data "consul_keys" "dns" {
     default = ""
   }
 }
+
+# Access a key in Consul
+data "consul_keys" "aws_infra" {
+  key {
+    name    = "subnet_id"
+    path    = "services/${var.env}/${var.service_name}/elb_subnet_id"
+    default = ""
+  }
+}

@@ -8,7 +8,7 @@
 resource "aws_elb" "service" {
   count           = "${var.enable_ssl ? 0 : 1}"
   name            = "${var.service_name}-${var.service_version}"
-  subnets         = ["${var.private_subnet_id}"]
+  subnets         = ["${data.consul_keys.aws_infra.var.elb_subnet_id}"]
   security_groups = ["${aws_security_group.service.id}"]
   internal        = "${var.internal_service}"
 
