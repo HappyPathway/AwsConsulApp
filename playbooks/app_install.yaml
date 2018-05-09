@@ -51,7 +51,11 @@
 
     - name: install supervisor
       apt: name=supervisor state=installed
-
+      register: result
+      until: result.rc == 0
+      retries: 10
+      delay: 10
+      
     - name: upload consul supervisord script
       copy: src={{ item.src }} dest={{ item.dest }}
       with_items:
