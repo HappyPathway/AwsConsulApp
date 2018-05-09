@@ -15,6 +15,9 @@
 
   tasks:
     
+    - name: block for apt
+      shell: while [ $(top -bn1| grep -q apt; echo $?) == '0' ]; do echo 'apt runing'; sleep 1; done
+      
     - name: download consul agent
       get_url: url=https://releases.hashicorp.com/consul/1.0.7/consul_1.0.7_linux_amd64.zip dest=/tmp/consul_1.0.7_linux_amd64.zip
 
