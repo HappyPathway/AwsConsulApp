@@ -41,7 +41,6 @@ resource "aws_elb" "service" {
 }
 
 resource "aws_lb_cookie_stickiness_policy" "cookie_stickness" {
-  count           = "${var.enable_ssl ? 0 : 1}"
   name                     = "${var.service_name}-${var.service_version}-cookiestickness"
   load_balancer            = "${aws_elb.service.id}"
   lb_port                  = "${var.service_port}"
