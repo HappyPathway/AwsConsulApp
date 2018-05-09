@@ -25,15 +25,16 @@ resource "null_resource" "service_config" {
 
   provisioner "file" {
     source      =  "${path.module}/playbooks"
-    destination = "/tmp/playbooks"
+    destination = "/tmp/consul_app_playbooks"
   }
 
   provisioner "remote-exec" {
     inline = [
+      "while [ $(top -bn1| grep -q apt; echo $?) == '0' ]; do echo 'apt runing'; sleep 1; done",
       "echo ${var.env} > /tmp/app.env",
       "echo ${var.service_name} > /tmp/app.service",
       "echo ${var.service_version} > /tmp/app.version",
-      "bash /tmp/playbooks/app_bootstrap.sh"
+      "bash /tmp/consul_app_playbooks/app_bootstrap.sh"
     ]
   }
 }
