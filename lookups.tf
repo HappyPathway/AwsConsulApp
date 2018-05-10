@@ -24,13 +24,13 @@ data "consul_keys" "dns" {
 data "consul_keys" "aws_infra" {
   key {
     name    = "subnet_id"
-    path    = "services/${var.env}/${var.service_name}/elb_subnet_id"
+    path    = "environments/${var.env}/${var.service_name}/elb_subnet_id"
     default = ""
   }
 
   key {
     name    = "security_group"
-    path    = "services/${var.env}/${var.service_name}/security_group"
+    path    = "environments/${var.env}/${var.service_name}/security_group"
     default = ""
   }
   
