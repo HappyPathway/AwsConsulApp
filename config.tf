@@ -33,6 +33,7 @@ resource "null_resource" "service_config" {
       "echo ${var.env} > /tmp/app.env",
       "echo ${var.service_name} > /tmp/app.service",
       "echo ${var.service_version} > /tmp/app.version",
+      "echo ${var.service_port} > /tmp/app.port",
       "bash /tmp/playbooks/app_bootstrap.sh"
     ]
   }

@@ -7,7 +7,6 @@
     consul_log_file: /opt/consul/logs/consul.log
     consul_home: /opt/consul
     consul_config_file: /etc/consul.d/consul-default.json
-    service_port: 80
     consul_acl : false
     consul_template_config_dir: /etc/consul-template/conf.d/
     consul_template_template_dir: /etc/consul-template/templates/
