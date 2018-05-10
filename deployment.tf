@@ -1,9 +1,3 @@
-# Configure the Consul provider
-provider "consul" {
-  address    = "${var.consul_address}"
-  datacenter = "${var.consul_dc}"
-}
-
 resource "consul_keys" "app" {
   datacenter = "${var.consul_dc}"
   # token      = "abcd"
@@ -15,7 +9,7 @@ resource "consul_keys" "app" {
   }
 
   key {
-    path  = "services/${var.env}/${var.service_name}/deployment/server_pools/${var.server_poolz}"
+    path  = "services/${var.env}/${var.service_name}/deployment/server_pools/${var.server_pool}"
     value = "${var.service_version}"
   }
 
