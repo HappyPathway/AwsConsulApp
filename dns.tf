@@ -12,5 +12,5 @@ resource "aws_route53_record" "service" {
   name    = "${var.service_name}-${var.env}-${var.service_version}.${data.consul_keys.dns.var.dns_name}"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${element(module.aws.instance_ips, count.index}"]
+  records = ["${element(module.aws.instance_ips, count.index)}"]
 }
